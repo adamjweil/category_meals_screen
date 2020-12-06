@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meals_app/screens/meal_detail_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
+import './screens/meal_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,10 +12,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // final routeArgs =
-    //     ModalRoute.of(context).settings.arguments as Map<String, String>;
-    // final categoryTitle = routeArgs['title'];
-    // final categoryId = routeArgs['id'];
     return MaterialApp(
       title: 'DeliMeals',
       theme: ThemeData(
@@ -38,7 +36,23 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => CategoriesScreen(),
         // CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
-        '/category-meals': (ctx) => CategoryMealsScreen()
+        '/category-meals': (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+      },
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   // if ( settings.name == '/meaal-detaail') {
+      //   //   return ...;
+      //   // } else if (settings.name == '/something-else') {
+      //   //   return ...;
+      //   // },
+      //   return MaterialPageRoute(
+      //     builder: (ctx) => CategoriesScreen(),),
+      //   },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (ctx) => CategoriesScreen(),
+        );
       },
     );
   }
